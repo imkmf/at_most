@@ -6,7 +6,7 @@ def downcase_and_pluralize(input)
 end
 
 def validation_error(model, message)
-  message || i18n_error(model) || "The maximum number of #{ downcase_and_pluralize(model.class) } has been reached."
+  message || i18n_error(model) || "Maximum number of #{model.class}s has been reached"
 end
 
 def i18n_error(model)
@@ -17,16 +17,13 @@ def i18n_error(model)
   end
 end
 
-
 class ActiveRecord::Base
-  class << self
-    def at_most(limiter, options = {})
-      validate do |model|
-        @all = self.class.all
-        @count = @all.is_a?(ActiveRecord::Relation) ? @all.size : @all.count
-        if @count >= limiter
-          model.errors.add :base, validation_error(model, options[:message])
-        end
+  def self.at_most(limiter, options = {})
+    validate do |model|
+      @all = self.class.all
+      @count = @all.is_a?(ActiveRecord::Relation) ? @all.size : @all.count
+      if @count >= limiter
+        model.errors.add :base, validation_error(model, options[:message])
       end
     end
   end

@@ -1,0 +1,7 @@
+en:
+  at_most: "Fallback"
+  activerecord:
+    errors:
+      models:
+        users:
+          at_most: "NOOO!"

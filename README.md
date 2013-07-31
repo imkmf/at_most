@@ -1,7 +1,17 @@
 # at_most
 
+[![Travis
+badge](https://travis-ci.org/imkmf/at_most.png)](https://travis-ci.org/imkmf/at_most)
+
+[![Code
+Climate](https://codeclimate.com/github/imkmf/at_most.png)](https://codeclimate.com/github/imkmf/at_most)
+
+[![Coverage
+Status](https://coveralls.io/repos/imkmf/at_most/badge.png)](https://coveralls.io/r/imkmf/at_most)
+
 A simple extension to ActiveRecord to allow limiting of model creation via
-validation.
+validation. This gem was extracted out of a Rails app function that limited the
+number of users that could be created with CRUD access to a different AR model.
 
 ## Installation
 
@@ -26,9 +36,13 @@ class User < ActiveRecord::Base
   at_most(5)
 end
 
-# after fifth User instance
-$ User.create!
->> ActiveRecord::RecordInvalid: Validation failed: The maximum number of users has
+```
+
+```shell
+
+# after fifth User instance, in IRB
+> User.create!
+  ActiveRecord::RecordInvalid: Validation failed: The maximum number of users has
 been reached.
 ```
 
@@ -42,7 +56,7 @@ You can specify custom errors in the model, or through i18n:
 # app/models/user.rb
 
 class User < ActiveRecord::Base
-  at_most(5, options: { message: "Sorry, all our spots are full!" })
+  at_most(5, { message: "Sorry, all our spots are full!" })
 end
 ```
 
@@ -61,6 +75,8 @@ en:
 ```
 
 ## Contributing
+
+Running tests -- the default `rake` task runs the Rspec suite.
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)

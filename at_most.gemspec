@@ -8,14 +8,13 @@ Gem::Specification.new do |spec|
   spec.version       = AtMost::VERSION
   spec.authors       = ["Kristian Freeman"]
   spec.email         = ["kristian@kristianfreeman.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Limit your ActiveRecord models}
+  spec.summary       = %q{A simple extension to ActiveRecord to allow limiting of model creation via validation. This gem was extracted out of a Rails app function that limited the number of users that could be created with CRUD access to a different AR model.}
+  spec.homepage      = "https://github.com/imkmf/at_most"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
+  spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ["lib"]
 
   spec.add_dependency "activerecord"
